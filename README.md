@@ -1,105 +1,91 @@
-# Web Spectacle
+# Nórdica
 
-Monorepo de aplicaciones web desarrollado con React, Vite y TypeScript. Configurado para desarrollo local en Windows.
-
-## Proyectos
-
-- **estudio-arquitectura** - Aplicación web principal para estudio de arquitectura
-- **api-server** - Servidor API con Express
-- **mockup-sandbox** - Entorno de pruebas para mockups
+Aplicación web funcional desarrollada con React, Vite y TypeScript. Configurado para desarrollo local y deployment en Vercel.
 
 ## Requisitos previos
 
-- Node.js 22+
-- pnpm (requisito obligatorio, no usar npm o yarn)
+- Node.js 18+
+- npm
 
 ## Instalación
 
 ```bash
-pnpm install
+npm install
 ```
 
 ## Scripts disponibles
 
 ### Desarrollo
 ```bash
-# Aplicación principal (estudio-arquitectura)
-cd artifacts/estudio-arquitectura
-pnpm run dev
-
-# Servidor API
-cd artifacts/api-server
-pnpm run dev
-
-# Mockup sandbox
-cd artifacts/mockup-sandbox
-pnpm run dev
+npm run dev
 ```
 
 ### Build
 ```bash
-# Build de todos los paquetes
-pnpm run build
+npm run build
+```
 
-# Typecheck completo
-pnpm run typecheck
+### Preview
+```bash
+npm run serve
+```
+
+### Typecheck
+```bash
+npm run typecheck
 ```
 
 ## Stack tecnológico
 
-- **Gestor de paquetes**: pnpm workspaces
-- **Runtime**: Node.js 22
+- **Gestor de paquetes**: npm
+- **Runtime**: Node.js 18+
 - **Lenguaje**: TypeScript 5.9
-- **Frontend**: React 19, Vite 7
-- **Estilos**: TailwindCSS 4
+- **Frontend**: React 18, Vite 5
+- **Estilos**: TailwindCSS 3
 - **UI Components**: Radix UI
-- **Backend**: Express 5
-- **Base de datos**: PostgreSQL + Drizzle ORM
+- **Formularios**: React Hook Form
+- **Rutas**: Wouter
 - **Validación**: Zod
-- **Build**: esbuild
-
-## Configuración específica para Windows
-
-Este proyecto está configurado para funcionar en Windows local:
-
-- Dependencias nativas de Windows incluidas (@esbuild/win32-x64, @rollup/rollup-win32-x64-msvc)
-- Exclusiones de dependencias de Linux configuradas en pnpm-workspace.yaml
-- Valores por defecto para variables de entorno (PORT=3000, BASE_PATH=/)
 
 ## Variables de entorno
 
-### estudio-arquitectura
-- `PORT` - Puerto del servidor (default: 3000)
+- `PORT` - Puerto del servidor (default: 4173)
 - `BASE_PATH` - Ruta base de la aplicación (default: /)
-
-### api-server
-- `DATABASE_URL` - String de conexión PostgreSQL
-- `NODE_ENV` - Entorno (development/production)
 
 ## Estructura del proyecto
 
 ```
-├── artifacts/               # Aplicaciones individuales
-│   ├── estudio-arquitectura/  # App principal
-│   ├── api-server/           # Servidor API
-│   └── mockup-sandbox/       # Sandbox de pruebas
-├── lib/                      # Librerías compartidas
-├── scripts/                  # Scripts de utilidad
-├── attached_assets/          # Assets estáticos
-└── pnpm-workspace.yaml      # Configuración de workspace
+├── src/                      # Código fuente
+│   ├── components/          # Componentes React
+│   ├── hooks/               # Custom hooks
+│   ├── lib/                 # Utilidades
+│   ├── pages/               # Páginas
+│   ├── App.tsx              # Componente principal
+│   ├── main.tsx             # Entry point
+│   └── index.css            # Estilos globales
+├── public/                   # Assets estáticos
+├── package.json             # Dependencias y scripts
+├── vite.config.ts           # Configuración de Vite
+├── tailwind.config.js       # Configuración de TailwindCSS
+├── tsconfig.json            # Configuración de TypeScript
+└── postcss.config.js        # Configuración de PostCSS
 ```
 
 ## Deploy
 
 Este proyecto está configurado para deployment en Vercel. Para conectar:
 
-1. Crea un repositorio en GitHub
-2. Importa el proyecto en Vercel
+1. Importa el proyecto en Vercel desde tu repositorio de GitHub
+2. Configura el Root Directory como `.` (raíz del proyecto)
 3. Configura las variables de entorno necesarias
 4. Deploy automático en cada push a main
 
+## Configuración específica para Windows
+
+Este proyecto funciona correctamente en Windows local sin configuraciones especiales adicionales.
+
 ## Notas importantes
 
-- Es obligatorio usar pnpm como gestor de paquetes
-- El proyecto tiene configuraciones de seguridad para prevenir ataques supply-chain
-- Las dependencias tienen un tiempo mínimo de publicación de 1 día por seguridad
+- Usa npm como gestor de paquetes
+- El servidor de desarrollo buscará automáticamente un puerto disponible si el default está ocupado
+- Configurado para hot module replacement durante el desarrollo
